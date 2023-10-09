@@ -1,0 +1,19 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem;
+}
+
+.footer-info {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.footer-title {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

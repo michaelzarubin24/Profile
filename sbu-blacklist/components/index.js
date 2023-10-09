@@ -1,8 +1,9 @@
-import { Footer } from "../components/Footer/Footer";
+import { Button } from "../components/Button/Button";
 import { Header } from "../components/Header/Header";
-import { Icon } from "../components/Icon/Icon";
+import { Main } from "../components/Main/Main";
+import { Section } from "../components/Section/Section";
+import { Footer } from "../components/Footer/Footer";
 import { Image } from "../components/Image/Image";
 import { Input } from "../components/Input/Input";
-import { Main } from "../components/Main/Main";
 
-export { Footer, Header, Icon, Image, Input, Main };
+export { Button, Header, Section, Main, Footer, Image, Input };

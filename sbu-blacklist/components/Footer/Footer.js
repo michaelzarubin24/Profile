@@ -1,42 +1,27 @@
 import { Component } from "/Users/Intel/Desktop/Profile/sbu-blacklist/core/component";
 import "/Users/Intel/Desktop/Profile/sbu-blacklist/components/Footer/Footer.scss";
 
-// export class Footer extends Component {
-//   constructor({
-//     tagName,
-//     textContent,
-//     html,
-//     className,
-//     id,
-//     children,
-//     events,
-//     ...attrs
-//   }) {
-//     super({
-//       tagName,
-//       textContent,
-//       html,
-//       className,
-//       id,
-//       children,
-//       events,
-//       ...attrs,
-//     });
-//     this.tagName = "footer";
-//     this.className = "footer";
-//   }
-// }
 export class Footer extends Component {
-  constructor({ textContent, html, id, children, events, ...attrs }) {
+  constructor({
+    tagName,
+    className,
+    textContent,
+    html,
+    children,
+    events,
+    ...attrs
+  }) {
     super({
-      tagName: "footer",
+      tagName,
+      className,
       textContent,
       html,
-      id,
       children,
       events,
       ...attrs,
     });
-    this.className = "footer";
+    this.footer = document.createElement(tagName ? tagName : "footer");
+    this.footer.className = className;
+    this.footer.textContent = textContent ? textContent : "";
   }
 }

@@ -1,7 +1,7 @@
 import { Component } from "/Users/Intel/Desktop/Profile/sbu-blacklist/core/component";
-import "/Users/Intel/Desktop/Profile/sbu-blacklist/components/Header/Header.scss";
+import "/Users/Intel/Desktop/Profile/sbu-blacklist/components/Section/Section.scss";
 
-export class Header extends Component {
+export class Section extends Component {
   constructor({
     tagName,
     className,
@@ -20,8 +20,8 @@ export class Header extends Component {
       events,
       ...attrs,
     });
-    this.header = document.createElement(tagName ? tagName : "header");
-    this.header.className = className;
-    this.header.textContent = textContent ? textContent : "";
+    this.section = document.createElement(tagName ? tagName : "section");
+    this.section.className = className;
+    this.section.textContent = textContent ? textContent : "";
   }
 }

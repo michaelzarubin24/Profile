@@ -1,0 +1,27 @@
+.main {
+  display: flex;
+  justify-content: space-around;
+  margin: 4rem;
+}
+
+.photo {
+  height: 60%;
+  width: 60%;
+}
+
+.main-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.name,
+.surname,
+.birthday,
+.status,
+.crime,
+.location {
+  margin-top: 10px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}

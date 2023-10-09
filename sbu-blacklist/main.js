@@ -1,149 +1,193 @@
-"use strict";
 import { Component } from "../sbu-blacklist/core/component";
-import { App } from "./App";
-import { append, render } from "./core/render";
-import { Footer, Header, Icon, Image, Input, Main } from "./components/index";
+import { App as Application } from "./App";
+import { append, prepend, appendMany, render } from "./core/render";
+import {
+  Button,
+  Header,
+  Main,
+  Section,
+  Image,
+  Input,
+  Footer,
+} from "./components/index";
 import "./styles/style.scss";
 
-const root = document.body;
+const app = document.querySelector("body");
 
-const header = new Header({
-  children: [
-    new Component({
-      tagName: "div",
-      className: "title",
-      textContent: "BLACKLIST",
-    }).toHTML(),
-    new Input({
-      type: "text",
-      name: "search",
-      id: "input-search",
-      placeholder: "search",
-    }).toHTML(),
-    new Component({
-      tagName: "div",
-      className: "icon-wrapper",
-      children: [
-        new Icon({
-          tagName: "img",
-          className: "icon",
-          src: "#",
-          alt: "Icon Description",
-        }).toHTML(),
-      ],
-    }),
-  ],
-  html: {
-    position: "beforebegin",
-    text: "<header>This is a header</header>",
+const infoPanel = [
+  {
+    tagName: "div",
+    className: "name",
+    textContent: "name",
   },
+  {
+    tagName: "div",
+    className: "surname",
+    textContent: "surname",
+  },
+  {
+    tagName: "div",
+    className: "birthday",
+    textContent: "birthday",
+  },
+  {
+    tagName: "div",
+    className: "status",
+    textContent: "status",
+  },
+  {
+    tagName: "div",
+    className: "crime",
+    textContent: "crime",
+  },
+  {
+    tagName: "div",
+    className: "location",
+    textContent: "location",
+  },
+].map((info) => {
+  return new Component({
+    tagName: info.tagName,
+    className: info.className,
+    textContent: info.textContent,
+  }).toHTML();
 });
 
-const main = new Main({
+const titles = [
+  {
+    tagName: "div",
+    className: "header-title",
+    textContent: "WANTED",
+  },
+  {
+    tagName: "div",
+    className: "footer-title",
+    textContent: "ABOUT",
+  },
+].map((title) => {
+  return new Component({
+    tagName: title.tagName,
+    className: title.className,
+    textContent: title.textContent,
+  }).toHTML();
+});
+
+const input = new Input({
+  tagName: "input",
+  className: "input-search",
+  id: "input-id",
+  type: "text",
+  name: "search",
+}).toHTML();
+debugger;
+
+const footer = new Footer({
+  tagName: "footer",
+  className: "footer",
   children: [
-    new Component({
+    new Section({
+      tagName: "section",
+      className: "footer-info",
+      children: [
+        titles[1],
+        new Component({
+          tagName: "p",
+          className: "footer-description",
+          textContent: "Information about this criminal is classified",
+          children: "",
+        }).toHTML(),
+      ],
+    }).toHTML(),
+    new Section({
+      tagName: "section",
+      className: "footer-stamp",
+      children: [
+        new Image({
+          tagName: "img",
+          className: "stamp",
+          src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Security_Service_of_Ukraine_Emblem.svg/200px-Security_Service_of_Ukraine_Emblem.svg.png",
+          alt: "-",
+        }).toHTML(),
+        "",
+      ],
+    }).toHTML(),
+  ],
+}).toHTML();
+
+const main = new Main({
+  tagName: "main",
+  className: "main",
+  children: [
+    new Section({
       tagName: "section",
       className: "main-photo",
       children: [
         new Component({
           tagName: "div",
           className: "main-wrapper",
-          children: [
-            new Icon({
-              tagName: "img",
-              className: "photo",
-              src: "#",
-              alt: "+",
-            }).toHTML(),
-          ],
-        }),
+          html: {
+            position: "afterbegin",
+            text: '<img src="https://cdn2.iconfinder.com/data/icons/social-messaging-productivity-6-1/128/profile-image-male-question-512.png" alt="+" class="photo" />',
+          },
+          children: "",
+        }).toHTML(),
+        new Component({
+          tagName: "div",
+          className: "icon-wrapper",
+          children: "",
+        }).toHTML(),
       ],
-    }),
-    new Component({
+    }).toHTML(),
+    new Section({
       tagName: "section",
       className: "main-info",
-      children: [
-        new Component({
-          tagName: "div",
-          className: "name",
-        }).toHTML(),
-        new Component({
-          tagName: "div",
-          className: "surname",
-        }).toHTML(),
-        new Component({
-          tagName: "div",
-          className: "date",
-        }).toHTML(),
-        new Component({
-          tagName: "div",
-          className: "status",
-        }).toHTML(),
-        new Component({
-          tagName: "div",
-          className: "crime",
-        }).toHTML(),
-        new Component({
-          tagName: "div",
-          className: "lastseen",
-        }).toHTML(),
-      ],
-    }),
+      children: [...infoPanel],
+    }).toHTML(),
   ],
-  html: {
-    position: "afterbegin",
-    text: "<main>This is the main content</main>",
-  },
-});
-
-const footer = new Footer({
-  children: [
-    new Component({
-      tagName: "div",
-      className: "footer-about",
-      children: [
-        new Component({
-          tagName: "div",
-          className: "footer-title",
-        }).toHTML(),
-        new Component({
-          tagName: "div",
-          className: "footer-description",
-        }).toHTML(),
-      ],
-    }),
-    new Component({
-      tagName: "div",
-      className: "footer-stamp",
-      children: [
-        new Icon({
-          tagName: "img",
-          className: "stamp",
-          src: "+",
-          alt: "+",
-        }).toHTML(),
-      ],
-    }),
-  ],
-  html: {
-    position: "afterend",
-    text: "<footer>This is the footer</footer>",
-  },
-});
-
-const headerElement = header.toHTML();
-const mainElement = main.toHTML();
-const footerElement = footer.toHTML();
-
-header.appendChildren();
-main.appendChildren();
-footer.appendChildren();
-
-const app = new App({
-  tagName: "div",
-  id: "app",
-  children: [headerElement, mainElement, footerElement],
 }).toHTML();
 
-append(app, root);
-console.log(app);
+const header = new Header({
+  tagName: "header",
+  className: "header",
+  children: [
+    titles[0],
+    input,
+
+    new Component({
+      tagName: "div",
+      className: "icon-wrapper",
+      html: {
+        position: "beforeend",
+        text: '<img src="https://www.iconpacks.net/icons/2/free-search-icon-2907-thumb.png" alt="+" class="icon" />',
+      },
+      children: [
+        new Button({
+          tagName: "button",
+          className: "header-btn",
+          type: "submit",
+          textContent: "find",
+        }).toHTML(),
+        "",
+      ],
+    }).toHTML(),
+  ],
+}).toHTML();
+
+const App = new Application({
+  tagName: "div",
+  className: "app",
+  children: [header, main, footer],
+}).toHTML();
+
+console.log("[Input]", input);
+console.log("[Footer]", footer);
+console.log("[Main]", main);
+console.log("[Header]", header);
+console.log("[App]", App);
+prepend(app, App);
+
+// const iconWrapper = new Component({
+//   tagName: "div",
+//   className: "icon-wrapper",
+//   children: [new Image({}).toHTML()],
+// }).toHTML();

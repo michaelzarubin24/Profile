@@ -1,0 +1,15 @@
+#app {
+  display: flex;
+  justify-content: start;
+}
+
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
+.icon {
+  height: 10%;
+  width: 10%;
+}
